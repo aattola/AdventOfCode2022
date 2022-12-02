@@ -40,26 +40,30 @@ function pisteita(enemy: string, me: string) {
   return 0;
 }
 
+function pakota(input: string) {
+  if (input === "A X") return 3;
+  if (input === "A Y") return 4;
+  if (input === "A Z") return 8;
+  if (input === "B X") return 1;
+  if (input === "B Y") return 5;
+  if (input === "B Z") return 9;
+  if (input === "C X") return 2;
+  if (input === "C Y") return 6;
+  if (input === "C Z") return 7;
+  return 0;
+}
+
 const pisteet = split.map((game) => {
   const [enemy, me] = game.split(" ");
   let pisteet = 0;
   const pelipisteet = pisteita(enemy, me);
 
-  if (me === "X") {
-    pisteet = pisteet + 1;
-  }
-
-  if (me === "Y") {
-    pisteet = pisteet + 2;
-  }
-
-  if (me === "Z") {
-    pisteet = pisteet + 3;
-  }
+  // pakotetaan sitten
+  const res = pakota(game);
 
   pisteet = pisteet + pelipisteet;
 
-  return pisteet;
+  return res;
 });
 
 const yht = pisteet.reduce((acc, curr) => {
